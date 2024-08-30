@@ -1,26 +1,34 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+
+const image = { uri: "https://docs.expo.dev/static/images/tutorial/background-image.png" };
 
 export default function CategoriesScreen() {
-  const theme = useTheme();
   return (
-    <View style={styles.container}>
-      <Text style={{ color: theme.colors.error }}>This is the Categories Screen</Text>
-      {/* Add your categories UI here */}
-    </View>
+  <View style={styles.container}>
+    <ImageBackground source={image} style={styles.image}>
+      <Text style={styles.text}>This</Text>
+      <Text style={styles.text}>is category</Text>
+      <Text style={styles.text}>screen</Text>
+    </ImageBackground>
+  </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'blue',
   },
   text: {
-    fontSize: 18,
+    color: 'white',
+    fontSize: 42,
     fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#000000a0',
   },
 });

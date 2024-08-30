@@ -10,16 +10,19 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import CategoriesScreen from './screens/CategoriesScreen';
 import CartScreen from './screens/CartScreen';
+import ProductDescription from './screens/ProductDescription';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: 'tomato',
-    secondary: 'yellow',
-  },
+
+//this function contains those pages routes where bottom tab navigator should be visible
+const TabRoutes = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="ProductDescription" component={ProductDescription} />
+    </Stack.Navigator>
+  );
 };
 
 //the bottom navigation bar
@@ -42,7 +45,7 @@ function HomeTabs() {
         },
       })}
     >
-      <Tab.Screen name="Home" options={{ headerShown: false }}  component={HomeScreen} />
+      <Tab.Screen name="Home" options={{headerShown:false}} component={TabRoutes} />
       <Tab.Screen name="Categories" options={{ headerShown: false }}  component={CategoriesScreen} />
       <Tab.Screen name="Cart" options={{ headerShown: false }}  component={CartScreen} />
     </Tab.Navigator>
@@ -53,7 +56,7 @@ function HomeTabs() {
 //page routes are described inside the name parameters so you can navigate to them using navigate function
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider>
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
